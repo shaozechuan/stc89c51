@@ -1,0 +1,24 @@
+C51 COMPILER V9.02   TEMP                                                                  12/19/2016 15:16:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE TEMP
+OBJECT MODULE PLACED IN temp.obj
+COMPILER INVOKED BY: C:\C51\BIN\C51.EXE 源文件\temp.c BROWSE INCDIR(.\头文件) DEBUG OBJECTEXTEND PRINT(.\temp.lst) OBJEC
+                    -T(temp.obj)
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

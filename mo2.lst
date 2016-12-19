@@ -1,0 +1,140 @@
+C51 COMPILER V9.02   MO2                                                                   12/19/2016 15:16:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MO2
+OBJECT MODULE PLACED IN mo2.obj
+COMPILER INVOKED BY: C:\C51\BIN\C51.EXE 源文件\mo2.c BROWSE INCDIR(.\头文件) DEBUG OBJECTEXTEND PRINT(.\mo2.lst) OBJECT(
+                    -mo2.obj)
+
+line level    source
+
+   1          #include"mo2.h"
+   2          #include"mo1.h"
+   3          #include"lcd.h"
+   4          #include"keys.h"
+   5          
+   6          /*****************************************设定倒计时时间**********************模块2***********************
+             -/
+   7          
+   8          unsigned char code zi3[]="Please set time!";
+   9          unsigned char code shu2[]="0123456789";
+  10          void mo2 ()
+  11          {
+  12   1              lcdwrite_com (0x80);
+  13   1                              for(r=0;r<16;r++)
+  14   1                              {
+  15   2                                      lcdwrite_data(zi3[r]);                                                                    //   提示设定倒计时
+  16   2                                      delay(1);
+  17   2                              }
+  18   1      
+  19   1                              while(1)
+  20   1                              {
+  21   2                                      lcdwrite_com (0xc0);
+  22   2                                      lcdwrite_data(shu2[m1]);
+  23   2              
+  24   2                                      lcdwrite_com (0xc1);
+  25   2                                      lcdwrite_data(shu2[m2]);
+  26   2              
+  27   2                                      lcdwrite_com (0xc2);
+  28   2                                      lcdwrite_data(':');
+  29   2              
+  30   2                                      lcdwrite_com (0xc3);
+  31   2                                      lcdwrite_data(shu2[s1]);
+  32   2              
+  33   2                                      lcdwrite_com (0xc4);
+  34   2                                      lcdwrite_data(shu2[s2]);
+  35   2      
+  36   2                                      key=0x0f;
+  37   2                                      if(key!=0x0f)
+  38   2                                      {
+  39   3                                              keys();
+  40   3                                              if(m==13)
+  41   3                                              {
+  42   4                                                      m2++;
+  43   4                                                      if(m1==9 & m2==10)
+  44   4                                                      {
+  45   5                                                              m1=0;
+  46   5                                                              m2=0;
+  47   5                                                      }
+  48   4                                                      if(m2==10)
+  49   4                                                      {
+  50   5                                                              m1++;
+  51   5                                                              m2=0;
+  52   5                                                      }
+  53   4                                              }
+C51 COMPILER V9.02   MO2                                                                   12/19/2016 15:16:27 PAGE 2   
+
+  54   3      
+  55   3                                              if(m==14)
+  56   3                                              {
+  57   4                                                      m2--;
+  58   4                                                      if(m1==0 & m2==-1)
+  59   4                                                      {
+  60   5                                                              m1=9;
+  61   5                                                              m2=9;
+  62   5                                                      }
+  63   4                                                      if(m2==-1)
+  64   4                                                      {
+  65   5                                                              m1--;
+  66   5                                                              m2=9;
+  67   5                                                      }
+  68   4                                              }
+  69   3      
+  70   3                                              if(m==15)
+  71   3                                              {
+  72   4                                                      s2++;
+  73   4                                                      if(s1==5 & s2==10)
+  74   4                                                      {
+  75   5                                                              m2++;
+  76   5                                                              s1=0;
+  77   5                                                              s2=0;
+  78   5                                                      }
+  79   4                                                      if(s2==10)
+  80   4                                                      {
+  81   5                                                              s1++;
+  82   5                                                              s2=0;
+  83   5                                                      }
+  84   4                                              }
+  85   3      
+  86   3                                              if(m==16)
+  87   3                                              {
+  88   4                                                      s2--;
+  89   4                                                      if(s1==0 & s2==-1)
+  90   4                                                      {       
+  91   5                                                              m2--;
+  92   5                                                              s1=5;
+  93   5                                                              s2=9;
+  94   5                                                      }
+  95   4                                                      if(s2==-1)
+  96   4                                                      {
+  97   5                                                              s1--;
+  98   5                                                              s2=9;
+  99   5                                                      }
+ 100   4                                              }
+ 101   3      
+ 102   3                                              if(m==10)
+ 103   3                                              {
+ 104   4                                                      goto tt6;
+ 105   4                                              }
+ 106   3                                              
+ 107   3                                      }
+ 108   2      
+ 109   2                              }
+ 110   1                              tt6:delay(1);
+ 111   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    480    ----
+C51 COMPILER V9.02   MO2                                                                   12/19/2016 15:16:27 PAGE 3   
+
+   CONSTANT SIZE    =     28    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

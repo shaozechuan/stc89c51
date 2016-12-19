@@ -1,0 +1,82 @@
+C51 COMPILER V9.02   MAIN                                                                  12/19/2016 15:16:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\C51\BIN\C51.EXE main.c BROWSE INCDIR(.\头文件) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"keys.h"
+   3          #include"lcd.h"
+   4          #include"temp.h"
+   5          #include"mo1.h"
+   6          #include"mo2.h"
+   7          #include"mo3.h"
+   8          #include"mo4.h"
+   9                                                                                            
+  10          
+  11          void main ()
+  12          {
+  13   1              mo1 ();
+  14   1              mo2 ();
+  15   1              mo3 ();
+  16   1      }
+  17          
+  18          /*******************************************************************************
+  19          * 函 数 名         : jishi
+  20          * 函数功能                 : 准确计时
+  21          * 输    入         : num,a,b
+  22          * 输    出         : 无
+  23          *******************************************************************************/
+  24          
+  25          void jishi ( ) interrupt 1
+  26          {
+  27   1         uchar num; 
+  28   1         num++;
+  29   1         if(num==20)
+  30   1         {
+  31   2                 s2--;
+  32   2                 num=0;
+  33   2         }
+  34   1         if(s2==-1)
+  35   1         {
+  36   2                 s1--;
+  37   2                 s2=6;
+  38   2         }
+  39   1         if(s1==-1)
+  40   1         {
+  41   2                 m2--;
+  42   2                 s1=5;s2=9;
+  43   2         }
+  44   1         if(m2==-1)
+  45   1         {
+  46   2                 m1--;
+  47   2                 m2=9;
+  48   2         }
+  49   1         if(s1==0 & s2==0)
+  50   1         {
+  51   2                 if(m1==0 & m2==0)                                                                                                    
+  52   2                 {
+  53   3                              void mo4 ();                                                    /******倒计时结束时执行的命令******模块4‘和模块4一样的命令*******/                                                                                           
+             -           
+  54   3                 }                    
+C51 COMPILER V9.02   MAIN                                                                  12/19/2016 15:16:27 PAGE 2   
+
+  55   2         }
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    114    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

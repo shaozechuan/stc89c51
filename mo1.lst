@@ -1,0 +1,166 @@
+C51 COMPILER V9.02   MO1                                                                   12/19/2016 15:16:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MO1
+OBJECT MODULE PLACED IN mo1.obj
+COMPILER INVOKED BY: C:\C51\BIN\C51.EXE 源文件\mo1.c BROWSE INCDIR(.\头文件) DEBUG OBJECTEXTEND PRINT(.\mo1.lst) OBJECT(
+                    -mo1.obj)
+
+line level    source
+
+   1          #include"mo1.h"
+   2          #include"lcd.h"
+   3          #include"keys.h"
+   4          
+   5          /***********************************显示  Are you ready?及提示设置密码******************模块1*************
+             -*/
+   6          unsigned char code zi1[]=" Are you ready? ";
+   7          unsigned char code zi2[]="  Set password! ";
+   8          unsigned char code shu1[]="0123456789";
+   9          
+  10          uint r=0;
+  11          uint m=0;
+  12          uint z=0;
+  13          uint a1=0;
+  14          uint b1=0;
+  15          uint c1=0;
+  16          uint d1=0;
+  17          uint a2=0;
+  18          uint b2=0;
+  19          uint c2=0;
+  20          uint d2=0;
+  21          uint m1=0;
+  22          uint m2=0;
+  23          uint s1=0;
+  24          uint s2=0;
+  25           
+  26          void mo1 ()
+  27          {
+  28   1              lcdinit();
+*** WARNING C206 IN LINE 28 OF 源文件\MO1.C: 'lcdinit': missing function-prototype
+  29   1              lcdwrite_com (0x80);
+  30   1              for(r=0;r<16;r++)
+  31   1              {
+  32   2                      lcdwrite_data (zi1[r]);                                                                   //   Are you sure ?
+  33   2                      delay(1);
+  34   2              }
+  35   1              while(1)
+  36   1              {
+  37   2                      key=0x0f;
+  38   2                      if(key!=0x0f)
+  39   2                      {       keys();
+  40   3                              if(m==10)
+  41   3                              {
+  42   4                                      goto tt0;
+  43   4                              }
+  44   3                      }
+  45   2              }
+  46   1              tt0:delay(1);
+  47   1              lcdinit();
+  48   1              lcdwrite_com (0x80);
+  49   1              for(r=0;r<16;r++)
+  50   1              {
+  51   2                      lcdwrite_data (zi2[r]);                                                                   //  提示设置密码
+  52   2                      delay(1);
+C51 COMPILER V9.02   MO1                                                                   12/19/2016 15:16:27 PAGE 2   
+
+  53   2              }
+  54   1                                                                                                        
+  55   1                              while(1)                                                                                                                 
+  56   1                              {                                                                                                                                  
+  57   2                          key=0x0f;                                                                             
+  58   2                                      if(key!=0x0f)
+  59   2                                      {
+  60   3                                              keys();
+  61   3                                              a1=m;
+  62   3                                              lcdwrite_com (0xc0);                                                
+  63   3                                              lcdwrite_data (shu1[a1]);
+  64   3                                              goto tt1;                                                                               //第一位
+  65   3                                      }
+  66   2                              }
+  67   1                              tt1:delay(1);
+  68   1      
+  69   1                              while(1)
+  70   1                              {
+  71   2                                      key=0x0f;
+  72   2                                      if(key!=0x0f)
+  73   2                                      {
+  74   3                                              keys();
+  75   3                                              b1=m;
+  76   3                                              lcdwrite_com (0xc1);                                                
+  77   3                                              lcdwrite_data (shu1[b1]);
+  78   3                                              goto tt2;                                                            
+  79   3                                      }
+  80   2                              }
+  81   1                              tt2:delay(1);                                                                                                           //第二位
+  82   1      
+  83   1                              while(1)
+  84   1                              {
+  85   2                                      key=0x0f;
+  86   2                                      if(key!=0x0f)
+  87   2                                      {
+  88   3                                              keys();
+  89   3                                              c1=m;
+  90   3                                              lcdwrite_com (0xc2);                                                
+  91   3                                              lcdwrite_data (shu1[c1]);
+  92   3                                              goto tt3;                                                            
+  93   3                                      }                                                                                                                               //第三位                                }
+  94   2      
+  95   2                              }
+  96   1                              tt3:delay(1);
+  97   1      
+  98   1                              while(1)
+  99   1                              {
+ 100   2                                      key=0x0f;
+ 101   2                                      if(key!=0x0f)
+ 102   2                                      {
+ 103   3                                              keys();
+ 104   3                                              d1=m;
+ 105   3                                              lcdwrite_com (0xc3);                                   
+ 106   3                                              lcdwrite_data (shu1[d1]);
+ 107   3                                              goto tt4;                                                                                                       //第四位
+ 108   3                                      }
+ 109   2                              }                                                                          
+ 110   1                              tt4:delay(1);
+ 111   1      
+ 112   1                              lcdinit();
+ 113   1                      lcdwrite_com (0x80);
+ 114   1                      for(r=0;r<16;r++)
+C51 COMPILER V9.02   MO1                                                                   12/19/2016 15:16:27 PAGE 3   
+
+ 115   1                      {
+ 116   2                                      lcdwrite_data (zi1[r]);                                                                   //  提示是否确定
+ 117   2                                      delay(1);
+ 118   2                      }
+ 119   1                              while(1)
+ 120   1                              {
+ 121   2                                      key=0x0f;
+ 122   2                                      if(key!=0x0f)
+ 123   2                                      {       keys();
+ 124   3                                              if(m==10)
+ 125   3                                              {
+ 126   4                                                      goto tt5;
+ 127   4                                              }
+ 128   3                                              if(m==12)
+ 129   3                                              {
+ 130   4                                                      goto tt0;
+ 131   4                                              }
+ 132   3                                      }
+ 133   2                              }
+ 134   1                              tt5:delay(1);
+ 135   1                              lcdinit();
+ 136   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    369    ----
+   CONSTANT SIZE    =     45    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     30    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,95 @@
+C51 COMPILER V9.02   KEYS                                                                  12/19/2016 15:16:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE KEYS
+OBJECT MODULE PLACED IN keys.obj
+COMPILER INVOKED BY: C:\C51\BIN\C51.EXE 源文件\keys.c BROWSE INCDIR(.\头文件) DEBUG OBJECTEXTEND PRINT(.\keys.lst) OBJEC
+                    -T(keys.obj)
+
+line level    source
+
+   1          #include"keys.h"
+   2          #include"lcd.h"
+   3          
+   4          #include<reg51.h>
+   5          
+   6          /*******************************************************************************
+   7          * 函 数 名       : keys
+   8          * 函数功能               : 扫描矩阵键盘
+   9          * 输    入       : 无
+  10          * 输    出       : m
+  11          *******************************************************************************/
+  12          
+  13          uint n,m;
+  14          void keys ( )
+  15          {  
+  16   1         key=0x0f;
+  17   1         if(key!=0x0f)
+  18   1        {
+  19   2              delay(5);
+  20   2              if(key!=0x0f)
+  21   2              {
+  22   3               switch (key)
+  23   3               {                                                                                                                                                                                 //对应按键功能                             //   原键值
+  24   4                        case 0x0e:n=1;break;                                                                                                                             //  1  2  3   分钟+  13                //  1  2  3  4
+  25   4                        case 0x0d:n=5;break;                                                                                                                             //  4  5  6   分钟-  14                //  5  6  7  8
+  26   4                        case 0x0b:n=9;break;                                                                                                                             //  7  8  9   秒+    15                //  9  10 11 12
+  27   4                        case 0x07:n=13;break;                                                                                                                            //  √  0  #   秒-   16                //  13 14 15 16
+  28   4               }                                                                                                                                                                                 // 10 11 12
+  29   3              }
+  30   2         
+  31   2              key=0xf0;
+  32   2              if(key!=0xf0)
+  33   2         {
+  34   3           delay(5);
+  35   3               if(key!=0xf0);
+  36   3               {
+  37   4               switch (key)
+  38   4               {
+  39   5                        case 0xe0:n=n;break;                                                                                     //得到按键  n
+  40   5                        case 0xd0:n=n+1;break;
+  41   5                        case 0xb0:n=n+2;break;
+  42   5                        case 0x70:n=n+3;break;
+  43   5               }
+  44   4               switch(n)
+  45   4               {
+  46   5                       case 1:m=1;n=0;break;
+  47   5                       case 2:m=2;n=0;break;
+  48   5                       case 3:m=3;n=0;break;
+  49   5                       case 4:m=13;n=0;break;
+  50   5                       case 5:m=4;n=0;break;
+  51   5                       case 6:m=5;n=0;break;
+  52   5                       case 7:m=6;n=0;break;
+  53   5                       case 8:m=14;n=0;break;
+  54   5                       case 9:m=7;n=0;break;
+C51 COMPILER V9.02   KEYS                                                                  12/19/2016 15:16:27 PAGE 2   
+
+  55   5                       case 10:m=8;n=0;break;
+  56   5                       case 11:m=9;n=0;break;
+  57   5                       case 12:m=15;n=0;break;
+  58   5                       case 13:m=10;n=0;break;
+  59   5                       case 14:m=11;n=0;break;
+  60   5                       case 15:m=12;n=0;break;
+  61   5                       case 16:m=16;n=0;break;                                                                                        //得到新的对应键值       m
+  62   5               }
+  63   4              while(key!=0xf0);
+  64   4              }
+  65   3              delay(5);                                                                                                      
+  66   3              while(key!=0xf0);
+  67   3          }
+  68   2        }
+  69   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    373    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
